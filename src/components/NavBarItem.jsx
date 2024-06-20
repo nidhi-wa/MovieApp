@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function NavbarItem({ title, param }) {
+export default function NavBarItem({ title, param }) {
   const searchParams = useSearchParams();
   const genre = searchParams.get('genre');
   return (
