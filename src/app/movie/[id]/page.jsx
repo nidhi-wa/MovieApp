@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
+
 
 export default async function MoviePage({ params }) {
   const movieId = params.id;
@@ -9,11 +11,13 @@ export default async function MoviePage({ params }) {
 
   return (
     <div className='w-full'>
+       <Suspense fallback={<div>Loading...</div>}>
       <div className='p-4 md:pt-8 flex flex-col md:flex-row content-center max-w-6xl mx-auto md:space-x-6'>
         <Image
           src={`https://image.tmdb.org/t/p/original/${
             movie.backdrop_path || movie.poster_path
           }`}
+          alt={movie.title || movie.name}
           width={500}
           height={300}
           className='rounded-lg'
@@ -34,6 +38,7 @@ export default async function MoviePage({ params }) {
           </p>
         </div>
       </div>
+      </Suspense>
     </div>
   );
 }
